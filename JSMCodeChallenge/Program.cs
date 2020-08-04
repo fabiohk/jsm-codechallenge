@@ -11,8 +11,8 @@ namespace JSMCodeChallenge
     {
         public static async Task Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
-            List<User> users = await CodeChallenge.LoadDataFromCSV();
+            List<User> users = await CodeChallenge.LoadUsers();
+            Console.WriteLine(users[0].Location.City);
         }
     }
 }
