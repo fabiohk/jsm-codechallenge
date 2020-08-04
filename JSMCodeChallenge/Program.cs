@@ -1,0 +1,18 @@
+﻿using System;
+using System.Net.Http;
+using System.Threading.Tasks;
+using System.Collections.Generic;
+using JSMCodeChallenge.Services;
+using JSMCodeChallenge.Models;
+
+namespace JSMCodeChallenge
+{
+    public class Program
+    {
+        public static async Task Main(string[] args)
+        {
+            Console.WriteLine("Hello World!");
+            List<User> users = await CodeChallenge.LoadDataFromCSV();
+        }
+    }
+}
