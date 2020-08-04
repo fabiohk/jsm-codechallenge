@@ -39,7 +39,7 @@ namespace JSMCodeChallenge.Services
             var loadCSVTask = LoadDataFromCSV();
             var loadJSONTask = LoadDataFromJSON();
             await Task.WhenAll(loadCSVTask, loadJSONTask);
-            return loadCSVTask.Result.Concat(loadJSONTask.Result).ToList();
+            return loadCSVTask.Result.Union(loadJSONTask.Result).ToList();
         }
 
     }

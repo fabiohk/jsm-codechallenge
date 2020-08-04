@@ -4,7 +4,7 @@ using System.Text.Json.Serialization;
 
 namespace JSMCodeChallenge.Models
 {
-    public class User {
+    public class User : IEquatable<User> {
         [JsonPropertyName("gender")]
         public string Gender { get; set; }
         [JsonPropertyName("name.title")]
@@ -14,7 +14,7 @@ namespace JSMCodeChallenge.Models
         [JsonPropertyName("name.last")]
         public string LastName { get; set; }
         [JsonPropertyName("email")]
-        public string Email { get; set; }
+        public string Email { get; set; } // Email is the user key!
         [JsonPropertyName("phone")]
         public string Phone { get; set; }
         [JsonPropertyName("cell")]
@@ -49,5 +49,15 @@ namespace JSMCodeChallenge.Models
                 References<Picture.CSVMap>(member => member.Picture);
             }
         }
+
+        public bool Equals(User anotherUser) {
+            if (anotherUser is null)
+                return false;
+
+            return this.Email == anotherUser.Email;
+        }
+
+        public override bool Equals(object? obj) => Equals(obj as User);
+        public override int GetHashCode() => Email.GetHashCode();
     }
 }

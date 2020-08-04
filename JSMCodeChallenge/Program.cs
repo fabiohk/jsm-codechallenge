@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Net.Http;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using JSMCodeChallenge.Services;
@@ -12,7 +11,7 @@ namespace JSMCodeChallenge
         public static async Task Main(string[] args)
         {
             List<User> users = await CodeChallenge.LoadUsers();
-            Console.WriteLine(users[0].Location.City);
+            Console.WriteLine(users.Count);
         }
     }
 }
