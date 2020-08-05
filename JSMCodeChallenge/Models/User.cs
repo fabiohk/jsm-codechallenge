@@ -1,6 +1,7 @@
 using System;
 using CsvHelper.Configuration;
 using System.Text.Json.Serialization;
+using JSMCodeChallenge.Helpers;
 
 namespace JSMCodeChallenge.Models
 {
@@ -15,8 +16,10 @@ namespace JSMCodeChallenge.Models
         public string LastName { get; set; }
         [JsonPropertyName("email")]
         public string Email { get; set; } // Email is the user key!
+        [JsonConverter(typeof(JSONPhoneConverter))]
         [JsonPropertyName("phone")]
         public string Phone { get; set; }
+        [JsonConverter(typeof(JSONPhoneConverter))]
         [JsonPropertyName("cell")]
         public string CellPhone { get; set; }
         [JsonPropertyName("registered.date")]
@@ -39,8 +42,8 @@ namespace JSMCodeChallenge.Models
                 Map(member => member.FirstName).Name("name__first");
                 Map(member => member.LastName).Name("name__last");
                 Map(member => member.Email).Name("email");
-                Map(member => member.Phone).Name("phone");
-                Map(member => member.CellPhone).Name("cell");
+                Map(member => member.Phone).Name("phone").TypeConverter<CSVPhoneConverter>();
+                Map(member => member.CellPhone).Name("cell").TypeConverter<CSVPhoneConverter>();
                 Map(member => member.RegisteredDate).Name("registered__date");
                 Map(member => member.BirthDate).Name("dob__date");
                 Map(member => member.CurrentAge).Name("dob__age");
