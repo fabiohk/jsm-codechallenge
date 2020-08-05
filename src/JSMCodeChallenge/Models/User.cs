@@ -34,6 +34,7 @@ namespace JSMCodeChallenge.Models
         public Location Location { get; set; }
         [JsonPropertyName("picture")]
         public Picture Picture { get; set; }
+        public string Nationality { get; set; } = "BR";
 
         public class CSVMap : ClassMap<User> {
             public CSVMap() {
