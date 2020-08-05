@@ -11,7 +11,11 @@ namespace JSMCodeChallenge
         public static async Task Main(string[] args)
         {
             List<User> users = await CodeChallenge.LoadUsers();
-            Console.WriteLine(users[0].Phone);
+            foreach (var user in users) {
+                if (user.Phone != null) {
+                    Console.WriteLine(user.Phone);
+                }
+            }
         }
     }
 }
