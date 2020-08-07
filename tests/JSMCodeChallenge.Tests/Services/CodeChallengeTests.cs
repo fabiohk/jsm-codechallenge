@@ -5,7 +5,7 @@ using Vcr;
 using JSMCodeChallenge.Services;
 using System.Net.Http;
 using System.Collections.Generic;
-using JSMCodeChallenge.Models;
+using JSMCodeChallenge.DTOs;
 
 namespace JSMCodeChallenge.Tests.Services
 {
@@ -25,12 +25,26 @@ namespace JSMCodeChallenge.Tests.Services
             service = new CodeChallenge(client);
         }
 
-        // [Fact(DisplayName = "Should return 999 users")]
-        // public async void TestShouldReturn999Users() {
-        //     using (vcr.UseCassette("load_data.yaml", RecordMode.Once)) {
-        //         List<User> users = await service.LoadUsers();
-        //         Assert.True(users.Count == 999);
-        //     }
-        // }
+        [Fact(DisplayName = "Should return list of UserDTO instances from CSV")]
+        public async void TestLoadCSV()
+        {
+            using (vcr.UseCassette("load_data.yaml", RecordMode.Once))
+            {
+                List<UserDTO> users = await service.LoadDataFromCSV();
+                Assert.NotEmpty(users);
+            }
+        }
+
+        [Fact(DisplayName = "Should return list of UserDTO instances from JSON")]
+        public async void TestLoadJSON()
+        {
+            using (vcr.UseCassette("load_data.yaml", RecordMode.Once))
+            {
+                List<UserDTO> users = await service.LoadDataFromJSON();
+                Assert.NotEmpty(users);
+            }
+        }
+
+
     }
 }
