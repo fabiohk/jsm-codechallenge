@@ -8,8 +8,10 @@ using CsvHelper.TypeConversion;
 
 namespace JSMCodeChallenge.Helpers
 {
-    public class JSONPhoneConverter : JsonConverter<string> {
-        public override string Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options) {
+    public class JSONPhoneConverter : JsonConverter<string>
+    {
+        public override string Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+        {
             var phoneNumberUtil = PhoneNumbers.PhoneNumberUtil.GetInstance();
             var phoneNumber = phoneNumberUtil.Parse(reader.GetString(), "BR");
             if (phoneNumberUtil.IsValidNumber(phoneNumber))
@@ -17,18 +19,20 @@ namespace JSMCodeChallenge.Helpers
             return null;
         }
 
-        public override void Write(Utf8JsonWriter writer, string stringValue, JsonSerializerOptions options) {
-            writer.WriteNull(stringValue);
+        public override void Write(Utf8JsonWriter writer, string value, JsonSerializerOptions options)
+        {
         }
     }
 
-    public class CSVPhoneConverter : StringConverter {
-            public override object ConvertFromString(string text, IReaderRow row, MemberMapData memberMapData) {
-                var phoneNumberUtil = PhoneNumbers.PhoneNumberUtil.GetInstance();
-                var phoneNumber = phoneNumberUtil.Parse(row.GetField("phone"), "BR");
-                if (phoneNumberUtil.IsValidNumber(phoneNumber))
-                    return phoneNumberUtil.Format(phoneNumber, PhoneNumberFormat.E164);
-                return null;
-            }
+    public class CSVPhoneConverter : StringConverter
+    {
+        public override object ConvertFromString(string text, IReaderRow row, MemberMapData memberMapData)
+        {
+            var phoneNumberUtil = PhoneNumbers.PhoneNumberUtil.GetInstance();
+            var phoneNumber = phoneNumberUtil.Parse(row.GetField("phone"), "BR");
+            if (phoneNumberUtil.IsValidNumber(phoneNumber))
+                return phoneNumberUtil.Format(phoneNumber, PhoneNumberFormat.E164);
+            return null;
         }
+    }
 }

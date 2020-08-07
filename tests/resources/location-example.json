@@ -1,0 +1,14 @@
+{
+    "street": "8614 avenida vinícius de morais",
+    "city": "ponta grossa",
+    "state": "rondônia",
+    "postcode": 97701,
+    "coordinates": {
+        "latitude": "-76.3253",
+        "longitude": "137.9437"
+    },
+    "timezone": {
+        "offset": "-1:00",
+        "description": "Azores, Cape Verde Islands"
+    }
+}

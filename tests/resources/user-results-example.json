@@ -1,0 +1,42 @@
+{
+    "results": [
+        {
+            "gender": "female",
+            "name": {
+                "title": "mrs",
+                "first": "ione",
+                "last": "da costa"
+            },
+            "location": {
+                "street": "8614 avenida vinícius de morais",
+                "city": "ponta grossa",
+                "state": "rondônia",
+                "postcode": 97701,
+                "coordinates": {
+                    "latitude": "-76.3253",
+                    "longitude": "137.9437"
+                },
+                "timezone": {
+                    "offset": "-1:00",
+                    "description": "Azores, Cape Verde Islands"
+                }
+            },
+            "email": "ione.dacosta@example.com",
+            "dob": {
+                "date": "1968-01-24T18:03:23Z",
+                "age": 50
+            },
+            "registered": {
+                "date": "2004-01-23T23:54:33Z",
+                "age": 14
+            },
+            "phone": "(01) 5415-5648",
+            "cell": "(10) 8264-5550",
+            "picture": {
+                "large": "https://randomuser.me/api/portraits/women/46.jpg",
+                "medium": "https://randomuser.me/api/portraits/med/women/46.jpg",
+                "thumbnail": "https://randomuser.me/api/portraits/thumb/women/46.jpg"
+            }
+        }
+    ]
+}
