@@ -11,7 +11,7 @@ namespace JSMCodeChallenge.Tests.Models {
 
             foreach (string state in brazilianNorthStates) {
                 BrazilianLocation location = new BrazilianLocation() { State = state };
-                Assert.Equal("north", location.Region());
+                Assert.Equal("north", location.Region);
             }
         }
 
@@ -22,7 +22,7 @@ namespace JSMCodeChallenge.Tests.Models {
 
             foreach (string state in brazilianNorthEastStates) {
                 BrazilianLocation location = new BrazilianLocation() { State = state };
-                Assert.Equal("north east", location.Region());
+                Assert.Equal("north east", location.Region);
             }
         }
 
@@ -33,7 +33,7 @@ namespace JSMCodeChallenge.Tests.Models {
 
             foreach (string state in brazilianCenterWestStates) {
                 BrazilianLocation location = new BrazilianLocation() { State = state };
-                Assert.Equal("center west", location.Region());
+                Assert.Equal("center west", location.Region);
             }
         }
 
@@ -44,7 +44,7 @@ namespace JSMCodeChallenge.Tests.Models {
 
             foreach (string state in brazilianSouthStates) {
                 BrazilianLocation location = new BrazilianLocation() { State = state };
-                Assert.Equal("south", location.Region());
+                Assert.Equal("south", location.Region);
             }
         }
 
@@ -55,16 +55,14 @@ namespace JSMCodeChallenge.Tests.Models {
 
             foreach (string state in brazilianSouthEastStates) {
                 BrazilianLocation location = new BrazilianLocation() { State = state };
-                Assert.Equal("south east", location.Region());
+                Assert.Equal("south east", location.Region);
             }
         }
 
-        [Fact(DisplayName = "Should throw CannotDetermineRegionException when state is an unknown Brazilian state")]
+        [Fact(DisplayName = "Should throw InvalidLocationStateException when state is an unknown Brazilian state")]
         public void TestBrazilianCannotDetermineRegion()
         {
-            BrazilianLocation location = new BrazilianLocation() { State = "unknown" };
-
-            Assert.Throws<CannotDetermineRegionLocationException>(location.Region);
+            Assert.Throws<InvalidLocationStateException>(() => new BrazilianLocation() { State = "unknown" });
         }
     }
 }
