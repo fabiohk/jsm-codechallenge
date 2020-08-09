@@ -53,12 +53,15 @@ namespace JSMCodeChallenge.DTOs
     {
         [JsonPropertyName("offset")]
         public string Offset { get; set; }
+        [JsonPropertyName("description")]
+        public string Description { get; set; }
 
         public class CSVMap : ClassMap<TimezoneDTO>
         {
             public CSVMap()
             {
                 Map(member => member.Offset).Name("location__timezone__offset");
+                Map(member => member.Description).Name("location__timezone__description");
             }
         }
     }

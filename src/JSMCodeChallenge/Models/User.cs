@@ -4,13 +4,13 @@ namespace JSMCodeChallenge.Models
 {
     public class User : IEquatable<User>
     {
+        public string Email { get; set; } // Email is the user key!
         public string Gender { get; set; }
 
         public string Title { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
 
-        public string Email { get; set; } // Email is the user key!
         public string Phone { get; set; }
 
         public string CellPhone { get; set; }

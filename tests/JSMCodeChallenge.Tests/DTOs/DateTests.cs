@@ -8,7 +8,7 @@ using CsvHelper;
 using System.Globalization;
 using JSMCodeChallenge.DTOs;
 
-namespace JSMCodeChallenge.Tests.Models
+namespace JSMCodeChallenge.Tests.DTOs
 {
     public class DateTests
     {

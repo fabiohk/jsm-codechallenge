@@ -8,7 +8,7 @@ using CsvHelper;
 using System.Globalization;
 using JSMCodeChallenge.DTOs;
 
-namespace JSMCodeChallenge.Tests.Models
+namespace JSMCodeChallenge.Tests.DTOs
 {
     public class LocationTests
     {
@@ -29,6 +29,7 @@ namespace JSMCodeChallenge.Tests.Models
                 Assert.Equal("-76.3253", location.Coordinates.Latitude);
                 Assert.Equal("137.9437", location.Coordinates.Longitude);
                 Assert.Equal("-1:00", location.Timezone.Offset);
+                Assert.Equal("Azores, Cape Verde Islands", location.Timezone.Description);
             }
         }
 
@@ -43,7 +44,7 @@ namespace JSMCodeChallenge.Tests.Models
                 Assert.Null(location.Street);
                 Assert.Null(location.City);
                 Assert.Null(location.State);
-                Assert.Equal(0, location.PostalCode);
+                Assert.Equal(default(int), location.PostalCode);
                 Assert.Null(location.Coordinates);
                 Assert.Null(location.Timezone);
             }
@@ -66,6 +67,7 @@ namespace JSMCodeChallenge.Tests.Models
                 Assert.Equal("-76.3253", locations[0].Coordinates.Latitude);
                 Assert.Equal("137.9437", locations[0].Coordinates.Longitude);
                 Assert.Equal("-1:00", locations[0].Timezone.Offset);
+                Assert.Equal("Azores, Cape Verde Islands", locations[0].Timezone.Description);
             }
         }
 

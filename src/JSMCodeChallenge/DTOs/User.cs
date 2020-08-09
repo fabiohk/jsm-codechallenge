@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
 using CsvHelper.Configuration;
-using JSMCodeChallenge.Helpers;
 
 namespace JSMCodeChallenge.DTOs
 {
