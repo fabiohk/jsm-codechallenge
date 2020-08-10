@@ -2,10 +2,12 @@ using JSMCodeChallenge.Models;
 using System.Collections.Generic;
 using System.Linq;
 using System;
+using Serilog;
+using Microsoft.Extensions.Logging;
 
 namespace JSMCodeChallenge.Business
 {
-    public class UserType
+    public static class UserType
     {
         private static readonly List<BoundingBox> SpecialBoundingBoxes;
         private static readonly List<BoundingBox> NormalBoundingBoxes;
@@ -20,6 +22,10 @@ namespace JSMCodeChallenge.Business
 
         public static string GetUserType(User user)
         {
+            if (user.Location == null)
+                return "laborious";
+
+            Log.Debug("Trying to evaluate user with coordinates {@Coordinates}...", user.Location.Coordinates);
             Coordinates userCoordinates = user.Location.Coordinates;
             if (SpecialBoundingBoxes.Any(boundingBox => boundingBox.IsCoordinatesInside(userCoordinates)))
                 return "special";

@@ -14,7 +14,8 @@ namespace JSMCodeChallenge.Models
         private string _Gender;
         public string Gender
         {
-            get => _Gender; set
+            get => _Gender;
+            set
             {
                 string loweredGenderString = value.ToLower();
                 bool isFemale = loweredGenderString == "female", isMale = loweredGenderString == "male";
@@ -26,22 +27,27 @@ namespace JSMCodeChallenge.Models
             }
         }
         public Name Name { get; set; }
-        private List<PhoneNumber> _Phones;
+        private List<PhoneNumber> _Phones = new List<PhoneNumber>();
         public List<string> Phones
         {
-            get => _Phones.Select(PhoneUtil.ConvertToE164Format).ToList(); set => _Phones = PhoneUtil.RetrieveValidPhoneNumbers(value, "BR");
+            get => _Phones.Select(PhoneUtil.ConvertToE164Format).ToList();
+            set => _Phones = PhoneUtil.RetrieveValidPhoneNumbers(value, "BR");
         }
-        private List<PhoneNumber> _CellPhones;
+        private List<PhoneNumber> _CellPhones = new List<PhoneNumber>();
         public List<string> CellPhones
         {
-            get => _CellPhones.Select(PhoneUtil.ConvertToE164Format).ToList(); set => _CellPhones = PhoneUtil.RetrieveValidPhoneNumbers(value, "BR");
+            get => _CellPhones.Select(PhoneUtil.ConvertToE164Format).ToList();
+            set => _CellPhones = PhoneUtil.RetrieveValidPhoneNumbers(value, "BR");
         }
         public DateTime RegisteredDate { get; set; }
         public DateTime BirthDate { get; set; }
         public Location Location { get; set; }
         public Picture Picture { get; set; }
         public string Nationality { get; set; }
-        public string Type { get; }
+        public string Type
+        {
+            get => UserType.GetUserType(this);
+        }
 
         public bool Equals(User anotherUser)
         {
