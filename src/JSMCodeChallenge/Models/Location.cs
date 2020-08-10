@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using JSMCodeChallenge.Exceptions;
+using System;
 
 namespace JSMCodeChallenge.Models
 {
@@ -16,8 +17,8 @@ namespace JSMCodeChallenge.Models
 
     public class Coordinates
     {
-        public string Latitde { get; set; }
-        public string Longitude { get; set; }
+        public decimal Latitude { get; set; }
+        public decimal Longitude { get; set; }
     }
 
     public class Timezone
