@@ -2,14 +2,17 @@ using Xunit;
 using JSMCodeChallenge.Models;
 using JSMCodeChallenge.Exceptions;
 
-namespace JSMCodeChallenge.Tests.Models {
-    public class LocationTests {
+namespace JSMCodeChallenge.Tests.Models
+{
+    public class LocationTests
+    {
         [Fact(DisplayName = "Should return that a Location instace is from Brazilian North region")]
         public void TestBrazilianNorthRegion()
         {
             string[] brazilianNorthStates = new string[] { "acre", "amazonas", "amapá", "pará", "rondônia", "roraima", "tocantins" };
 
-            foreach (string state in brazilianNorthStates) {
+            foreach (string state in brazilianNorthStates)
+            {
                 BrazilianLocation location = new BrazilianLocation() { State = state };
                 Assert.Equal("north", location.Region);
             }
@@ -20,7 +23,8 @@ namespace JSMCodeChallenge.Tests.Models {
         {
             string[] brazilianNorthEastStates = new string[] { "alagoas", "bahia", "ceará", "maranhão", "paraíba", "pernambuco", "piauí", "rio grande do norte", "sergipe" };
 
-            foreach (string state in brazilianNorthEastStates) {
+            foreach (string state in brazilianNorthEastStates)
+            {
                 BrazilianLocation location = new BrazilianLocation() { State = state };
                 Assert.Equal("north east", location.Region);
             }
@@ -31,7 +35,8 @@ namespace JSMCodeChallenge.Tests.Models {
         {
             string[] brazilianCenterWestStates = new string[] { "goiás", "mato grosso", "mato grosso do sul", "distrito federal" };
 
-            foreach (string state in brazilianCenterWestStates) {
+            foreach (string state in brazilianCenterWestStates)
+            {
                 BrazilianLocation location = new BrazilianLocation() { State = state };
                 Assert.Equal("center west", location.Region);
             }
@@ -42,7 +47,8 @@ namespace JSMCodeChallenge.Tests.Models {
         {
             string[] brazilianSouthStates = new string[] { "rio grande do sul", "paraná", "santa catarina" };
 
-            foreach (string state in brazilianSouthStates) {
+            foreach (string state in brazilianSouthStates)
+            {
                 BrazilianLocation location = new BrazilianLocation() { State = state };
                 Assert.Equal("south", location.Region);
             }
@@ -53,7 +59,8 @@ namespace JSMCodeChallenge.Tests.Models {
         {
             string[] brazilianSouthEastStates = new string[] { "espírito santo", "minas gerais", "são paulo", "rio de janeiro" };
 
-            foreach (string state in brazilianSouthEastStates) {
+            foreach (string state in brazilianSouthEastStates)
+            {
                 BrazilianLocation location = new BrazilianLocation() { State = state };
                 Assert.Equal("south east", location.Region);
             }

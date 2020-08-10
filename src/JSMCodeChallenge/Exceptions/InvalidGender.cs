@@ -1,7 +1,9 @@
 using System;
 
-namespace JSMCodeChallenge.Exceptions {
-    public class InvalidGenderException : Exception {
+namespace JSMCodeChallenge.Exceptions
+{
+    public class InvalidGenderException : Exception
+    {
         public InvalidGenderException() { }
 
         public InvalidGenderException(string message) : base(message) { }

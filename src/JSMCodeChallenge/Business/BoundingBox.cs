@@ -1,3 +1,4 @@
+using System;
 using JSMCodeChallenge.Models;
 
 namespace JSMCodeChallenge.Business

@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using JSMCodeChallenge.Exceptions;
-using System;
 
 namespace JSMCodeChallenge.Models
 {
@@ -35,15 +34,21 @@ namespace JSMCodeChallenge.Models
         private readonly HashSet<string> SouthStates = new HashSet<string> { "rio grande do sul", "paraná", "santa catarina" };
         private readonly HashSet<string> SouthEastStates = new HashSet<string> { "espírito santo", "minas gerais", "são paulo", "rio de janeiro" };
         private string _State;
-        public override string State { get => _State; set {
-            string stateLoweredString = value.ToLower();
+        public override string State
+        {
+            get => _State; set
+            {
+                string stateLoweredString = value.ToLower();
 
-            if (!NorthStates.Contains(stateLoweredString) && !NorthEastStates.Contains(stateLoweredString) && !CenterWestStates.Contains(stateLoweredString) && !SouthStates.Contains(stateLoweredString) && !SouthEastStates.Contains(stateLoweredString))
-                throw new InvalidLocationStateException();
-            
-            _State = stateLoweredString;
-        }}
-        public override string Region { get
+                if (!NorthStates.Contains(stateLoweredString) && !NorthEastStates.Contains(stateLoweredString) && !CenterWestStates.Contains(stateLoweredString) && !SouthStates.Contains(stateLoweredString) && !SouthEastStates.Contains(stateLoweredString))
+                    throw new InvalidLocationStateException();
+
+                _State = stateLoweredString;
+            }
+        }
+        public override string Region
+        {
+            get
             {
                 if (NorthStates.Contains(State))
                     return "north";
