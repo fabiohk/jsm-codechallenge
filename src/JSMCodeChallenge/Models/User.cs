@@ -1,6 +1,9 @@
 using System;
 using System.Collections.Generic;
 using JSMCodeChallenge.Exceptions;
+using System.Linq;
+using JSMCodeChallenge.Helpers;
+using PhoneNumbers;
 
 namespace JSMCodeChallenge.Models
 {
@@ -18,8 +21,12 @@ namespace JSMCodeChallenge.Models
             _Gender = isFemale ? "f" : "m";
         } }
         public Name Name { get; set; }
-        public List<string> Phone { get; set; }
-        public List<string> CellPhone { get; set; }
+        private List<PhoneNumber> _Phones;
+        public List<string> Phones { get => _Phones.Select(PhoneUtil.ConvertToE164Format).ToList(); set => _Phones = PhoneUtil.RetrieveValidPhoneNumbers(value, "BR");
+        }
+        private List<PhoneNumber> _CellPhones;
+        public List<string> CellPhones { get => _CellPhones.Select(PhoneUtil.ConvertToE164Format).ToList(); set => _CellPhones = PhoneUtil.RetrieveValidPhoneNumbers(value, "BR");
+        }
         public DateTime RegisteredDate { get; set; }
         public DateTime BirthDate { get; set; }
         public Location Location { get; set; }
