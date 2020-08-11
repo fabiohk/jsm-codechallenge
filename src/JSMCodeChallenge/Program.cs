@@ -74,7 +74,8 @@ namespace JSMCodeChallenge
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
-                }).ConfigureServices((ctx, service) =>
+                })
+                .ConfigureServices((ctx, service) =>
                 {
                     service.AddSingleton<UserRepository>(_ => new UserRepository(users));
                 });

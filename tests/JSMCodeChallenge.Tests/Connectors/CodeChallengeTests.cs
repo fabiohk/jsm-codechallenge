@@ -29,7 +29,7 @@ namespace JSMCodeChallenge.Tests.Connectors
         [Fact(DisplayName = "Should return list of UserDTO instances from CSV")]
         public async void TestLoadCSV()
         {
-            using (_vcr.UseCassette("load_data.yaml", RecordMode.Once))
+            using (_vcr.UseCassette("load-data-csv", RecordMode.Once))
             {
                 IEnumerable<UserDTO> users = await _repository.LoadDataFromCSV();
                 Assert.NotEmpty(users);
@@ -39,7 +39,7 @@ namespace JSMCodeChallenge.Tests.Connectors
         [Fact(DisplayName = "Should return list of UserDTO instances from JSON")]
         public async void TestLoadJSON()
         {
-            using (_vcr.UseCassette("load_data.yaml", RecordMode.Once))
+            using (_vcr.UseCassette("load-data-json", RecordMode.Once))
             {
                 IEnumerable<UserDTO> users = await _repository.LoadDataFromJSON();
                 Assert.NotEmpty(users);

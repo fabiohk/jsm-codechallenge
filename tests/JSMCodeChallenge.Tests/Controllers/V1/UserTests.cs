@@ -5,13 +5,14 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using Newtonsoft.Json.Linq;
+using JSMCodeChallenge.Tests.Fixtures;
 
 namespace JSMCodeChallenge.Tests.Controllers.V1
 {
-    public class UserTests : IClassFixture<WebApplicationFactory<Api.Startup>>
+    public class UserTests : IClassFixture<CustomWebApplicationFactory>
     {
         private readonly HttpClient _client;
-        public UserTests(WebApplicationFactory<Api.Startup> fixture)
+        public UserTests(CustomWebApplicationFactory fixture)
         {
             _client = fixture.CreateClient();
         }

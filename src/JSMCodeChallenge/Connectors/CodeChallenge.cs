@@ -29,9 +29,9 @@ namespace JSMCodeChallenge.Connectors
             {
                 CsvReader reader = new CsvReader(streamReader, CultureInfo.InvariantCulture);
                 reader.Configuration.RegisterClassMap<UserDTO.CSVMap>();
-                IEnumerable<UserDTO> users = reader.GetRecords<UserDTO>();
+                IEnumerable<UserDTO> users = reader.GetRecords<UserDTO>().ToList();
                 Log.Information("Successfully retrieved {Count} users from CSV.", users.Count());
-                return users.ToList();
+                return users;
             }
         }
 
