@@ -12,12 +12,12 @@ namespace JSMCodeChallenge.Tests.DTOs
 {
     public class LocationTests
     {
-        private static string baseDirectory = $"{Directory.GetParent(Environment.CurrentDirectory).Parent.FullName}../../..";
+        private static string _baseDirectory = $"{Directory.GetParent(Environment.CurrentDirectory).Parent.FullName}../../..";
 
         [Fact(DisplayName = "Should deserialize a JSON into LocationDTO instance with valid values")]
         public static void TestDeserializeJSON()
         {
-            using (StreamReader stream = new StreamReader($"{baseDirectory}/resources/location-example.json"))
+            using (StreamReader stream = new StreamReader($"{_baseDirectory}/resources/location-example.json"))
             {
                 string json = stream.ReadToEnd();
                 LocationDTO location = JsonSerializer.Deserialize<LocationDTO>(json);
@@ -36,7 +36,7 @@ namespace JSMCodeChallenge.Tests.DTOs
         [Fact(DisplayName = "Should deserializa a JSON into LocationDTO instance with default values when JSON is not in the expected format")]
         public static void TestDeserializeNotExpectedJSON()
         {
-            using (StreamReader stream = new StreamReader($"{baseDirectory}/resources/random-example.json"))
+            using (StreamReader stream = new StreamReader($"{_baseDirectory}/resources/random-example.json"))
             {
                 string json = stream.ReadToEnd();
                 LocationDTO location = JsonSerializer.Deserialize<LocationDTO>(json);
@@ -53,7 +53,7 @@ namespace JSMCodeChallenge.Tests.DTOs
         [Fact(DisplayName = "Should deserialize a CSV into LocationDTO instance with valid values")]
         public static void TestDeserializeCSV()
         {
-            using (StreamReader stream = new StreamReader($"{baseDirectory}/resources/data-example.csv"))
+            using (StreamReader stream = new StreamReader($"{_baseDirectory}/resources/data-example.csv"))
             {
                 CsvReader reader = new CsvReader(stream, CultureInfo.InvariantCulture);
                 reader.Configuration.RegisterClassMap<LocationDTO.CSVMap>();
@@ -74,7 +74,7 @@ namespace JSMCodeChallenge.Tests.DTOs
         [Fact(DisplayName = "Shouldnt deserialize a CSV into LocationDTO instance when CSV is not in the expected format")]
         public static void TestDeserializeNotExpectedCSV()
         {
-            using (StreamReader stream = new StreamReader($"{baseDirectory}/resources/random-example.csv"))
+            using (StreamReader stream = new StreamReader($"{_baseDirectory}/resources/random-example.csv"))
             {
                 CsvReader reader = new CsvReader(stream, CultureInfo.InvariantCulture);
                 reader.Configuration.RegisterClassMap<LocationDTO.CSVMap>();

@@ -5,24 +5,24 @@ namespace JSMCodeChallenge.Business
 {
     public class BoundingBox
     {
-        private readonly decimal NormalizedMinLongitude;
-        private readonly decimal NormalizedMaxLongitude;
-        private readonly decimal NormalizedMinLatitude;
-        private readonly decimal NormalizedMaxLatitude;
+        private readonly decimal _normalizedMinLongitude;
+        private readonly decimal _normalizedMaxLongitude;
+        private readonly decimal _normalizedMinLatitude;
+        private readonly decimal _normalizedMaxLatitude;
 
         public BoundingBox(decimal minLatitude, decimal maxLatitude, decimal minLongitude, decimal maxLongitude)
         {
-            NormalizedMinLatitude = minLatitude + 90;
-            NormalizedMaxLatitude = maxLatitude + 90;
-            NormalizedMinLongitude = minLongitude + 180;
-            NormalizedMaxLongitude = maxLongitude + 180;
+            _normalizedMinLatitude = minLatitude + 90;
+            _normalizedMaxLatitude = maxLatitude + 90;
+            _normalizedMinLongitude = minLongitude + 180;
+            _normalizedMaxLongitude = maxLongitude + 180;
         }
 
         public bool IsCoordinatesInside(Coordinates coordinates)
         {
             decimal normalizedLatitude = coordinates.Latitude + 90, normalizedLongitude = coordinates.Longitude + 180;
-            bool insideLatitudeInterval = NormalizedMinLatitude <= normalizedLatitude && normalizedLatitude <= NormalizedMaxLatitude;
-            bool insideLongitudeInterval = NormalizedMinLongitude <= normalizedLongitude && normalizedLongitude <= NormalizedMaxLongitude;
+            bool insideLatitudeInterval = _normalizedMinLatitude <= normalizedLatitude && normalizedLatitude <= _normalizedMaxLatitude;
+            bool insideLongitudeInterval = _normalizedMinLongitude <= normalizedLongitude && normalizedLongitude <= _normalizedMaxLongitude;
             return insideLatitudeInterval && insideLongitudeInterval;
         }
     }

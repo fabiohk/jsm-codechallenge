@@ -3,25 +3,25 @@ using System.Collections.Generic;
 
 namespace JSMCodeChallenge.Helpers
 {
-    public class PhoneUtil
+    public static class PhoneUtil
     {
-        private static readonly PhoneNumberUtil phoneNumberUtil = PhoneNumberUtil.GetInstance();
+        private static readonly PhoneNumberUtil _phoneNumberUtil = PhoneNumberUtil.GetInstance();
 
         public static string ConvertToE164Format(PhoneNumber phone)
         {
-            return phoneNumberUtil.Format(phone, PhoneNumberFormat.E164);
+            return _phoneNumberUtil.Format(phone, PhoneNumberFormat.E164);
         }
 
-        public static List<PhoneNumber> RetrieveValidPhoneNumbers(IEnumerable<string> phones, string region)
+        public static IEnumerable<PhoneNumber> RetrieveValidPhoneNumbers(IEnumerable<string> phones, string region)
         {
-            List<PhoneNumber> phoneNumbers = new List<PhoneNumber>();
+            HashSet<PhoneNumber> phoneNumbers = new HashSet<PhoneNumber>();
 
             foreach (string phone in phones)
             {
                 try
                 {
-                    PhoneNumber phoneNumber = phoneNumberUtil.Parse(phone, region);
-                    if (phoneNumberUtil.IsValidNumber(phoneNumber))
+                    PhoneNumber phoneNumber = _phoneNumberUtil.Parse(phone, region);
+                    if (_phoneNumberUtil.IsValidNumber(phoneNumber))
                         phoneNumbers.Add(phoneNumber);
                 }
                 catch (NumberParseException) { }

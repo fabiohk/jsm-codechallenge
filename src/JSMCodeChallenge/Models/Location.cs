@@ -7,7 +7,7 @@ namespace JSMCodeChallenge.Models
     {
         public string Street { get; set; }
         public string City { get; set; }
-        public int PostalCode { get; set; }
+        public int? PostalCode { get; set; }
         public Coordinates Coordinates { get; set; }
         public Timezone Timezone { get; set; }
         public abstract string State { get; set; }
@@ -28,35 +28,35 @@ namespace JSMCodeChallenge.Models
 
     public class BrazilianLocation : Location
     {
-        private readonly HashSet<string> NorthStates = new HashSet<string> { "acre", "amazonas", "amapá", "pará", "rondônia", "roraima", "tocantins" };
-        private readonly HashSet<string> NorthEastStates = new HashSet<string> { "alagoas", "bahia", "ceará", "maranhão", "paraíba", "pernambuco", "piauí", "rio grande do norte", "sergipe" };
-        private readonly HashSet<string> CenterWestStates = new HashSet<string> { "goiás", "mato grosso", "mato grosso do sul", "distrito federal" };
-        private readonly HashSet<string> SouthStates = new HashSet<string> { "rio grande do sul", "paraná", "santa catarina" };
-        private readonly HashSet<string> SouthEastStates = new HashSet<string> { "espírito santo", "minas gerais", "são paulo", "rio de janeiro" };
-        private string _State;
+        private readonly HashSet<string> _northStates = new HashSet<string> { "acre", "amazonas", "amapá", "pará", "rondônia", "roraima", "tocantins" };
+        private readonly HashSet<string> _northEastStates = new HashSet<string> { "alagoas", "bahia", "ceará", "maranhão", "paraíba", "pernambuco", "piauí", "rio grande do norte", "sergipe" };
+        private readonly HashSet<string> _centerWestStates = new HashSet<string> { "goiás", "mato grosso", "mato grosso do sul", "distrito federal" };
+        private readonly HashSet<string> _southStates = new HashSet<string> { "rio grande do sul", "paraná", "santa catarina" };
+        private readonly HashSet<string> _southEastStates = new HashSet<string> { "espírito santo", "minas gerais", "são paulo", "rio de janeiro" };
+        private string _state;
         public override string State
         {
-            get => _State; set
+            get => _state; set
             {
                 string stateLoweredString = value.ToLower();
 
-                if (!NorthStates.Contains(stateLoweredString) && !NorthEastStates.Contains(stateLoweredString) && !CenterWestStates.Contains(stateLoweredString) && !SouthStates.Contains(stateLoweredString) && !SouthEastStates.Contains(stateLoweredString))
+                if (!_northStates.Contains(stateLoweredString) && !_northEastStates.Contains(stateLoweredString) && !_centerWestStates.Contains(stateLoweredString) && !_southStates.Contains(stateLoweredString) && !_southEastStates.Contains(stateLoweredString))
                     throw new InvalidLocationStateException();
 
-                _State = stateLoweredString;
+                _state = stateLoweredString;
             }
         }
         public override string Region
         {
             get
             {
-                if (NorthStates.Contains(State))
+                if (_northStates.Contains(State))
                     return "north";
-                if (NorthEastStates.Contains(State))
+                if (_northEastStates.Contains(State))
                     return "north east";
-                if (CenterWestStates.Contains(State))
+                if (_centerWestStates.Contains(State))
                     return "center west";
-                if (SouthStates.Contains(State))
+                if (_southStates.Contains(State))
                     return "south";
                 return "south east";
             }

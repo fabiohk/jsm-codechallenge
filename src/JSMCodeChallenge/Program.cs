@@ -1,13 +1,19 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Net.Http;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Serilog;
 using JSMCodeChallenge.Api;
+using System.Threading.Tasks;
+using JSMCodeChallenge.Connectors;
+using System.Linq;
+using JSMCodeChallenge.Helpers;
+using System.Collections.Generic;
+using JSMCodeChallenge.Models;
+using JSMCodeChallenge.Repositories;
 
 namespace JSMCodeChallenge
 {
@@ -17,7 +23,7 @@ namespace JSMCodeChallenge
         {
             var configuration = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+                .AddJsonFile("appsettings.json", optional: false)
                 .AddEnvironmentVariables()
                 .Build();
 
@@ -26,13 +32,31 @@ namespace JSMCodeChallenge
                 .CreateLogger();
         }
 
-        public static void Main(string[] args)
+
+        private static async Task<IEnumerable<User>> LoadUsers()
+        {
+            using (var client = new HttpClient())
+            {
+                var connector = new CodeChallenge(client);
+
+                var loadJsonTask = connector.LoadDataFromJSON();
+                var loadCsvTask = connector.LoadDataFromCSV();
+
+                await Task.WhenAll(loadCsvTask, loadJsonTask);
+
+                return loadJsonTask.Result.Concat(loadCsvTask.Result)
+                    .Select(userDTO => Parser.parseUserDTO(userDTO, "BR", "BR"))
+                    .ToHashSet();
+            }
+        }
+        public static async Task Main(string[] args)
         {
             ConfigureLogger();
 
             try
             {
-                CreateHostBuilder(args).Build().Run();
+                var users = await LoadUsers();
+                CreateHostBuilder(args, users).Build().Run();
             }
             catch (Exception e)
             {
@@ -44,11 +68,15 @@ namespace JSMCodeChallenge
             }
         }
 
-        public static IHostBuilder CreateHostBuilder(string[] args) =>
+        public static IHostBuilder CreateHostBuilder(string[] args, IEnumerable<User> users) =>
             Host.CreateDefaultBuilder(args)
+                .UseSerilog()
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
+                }).ConfigureServices((ctx, service) =>
+                {
+                    service.AddSingleton<UserRepository>(_ => new UserRepository(users));
                 });
     }
 }

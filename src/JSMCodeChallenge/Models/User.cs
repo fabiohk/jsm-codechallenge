@@ -11,10 +11,10 @@ namespace JSMCodeChallenge.Models
     public class User : IEquatable<User>
     {
         public string Email { get; set; } // Email is the user key!
-        private string _Gender;
+        private string _gender;
         public string Gender
         {
-            get => _Gender;
+            get => _gender;
             set
             {
                 string loweredGenderString = value.ToLower();
@@ -23,24 +23,14 @@ namespace JSMCodeChallenge.Models
                 if (!isFemale && !isMale)
                     throw new InvalidGenderException();
 
-                _Gender = isFemale ? "f" : "m";
+                _gender = isFemale ? "f" : "m";
             }
         }
         public Name Name { get; set; }
-        private List<PhoneNumber> _Phones = new List<PhoneNumber>();
-        public List<string> Phones
-        {
-            get => _Phones.Select(PhoneUtil.ConvertToE164Format).ToList();
-            set => _Phones = PhoneUtil.RetrieveValidPhoneNumbers(value, "BR");
-        }
-        private List<PhoneNumber> _CellPhones = new List<PhoneNumber>();
-        public List<string> CellPhones
-        {
-            get => _CellPhones.Select(PhoneUtil.ConvertToE164Format).ToList();
-            set => _CellPhones = PhoneUtil.RetrieveValidPhoneNumbers(value, "BR");
-        }
-        public DateTime RegisteredDate { get; set; }
-        public DateTime BirthDate { get; set; }
+        public IEnumerable<string> Phones { get; set; } = new List<string>();
+        public IEnumerable<string> CellPhones { get; set; } = new List<string>();
+        public DateTime? RegisteredDate { get; set; }
+        public DateTime? BirthDate { get; set; }
         public Location Location { get; set; }
         public Picture Picture { get; set; }
         public string Nationality { get; set; }

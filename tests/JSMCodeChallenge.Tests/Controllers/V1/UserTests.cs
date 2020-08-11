@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc.Testing;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
 using System.Collections.Generic;
 using Newtonsoft.Json.Linq;
 
@@ -11,16 +10,16 @@ namespace JSMCodeChallenge.Tests.Controllers.V1
 {
     public class UserTests : IClassFixture<WebApplicationFactory<Api.Startup>>
     {
-        private readonly HttpClient Client;
+        private readonly HttpClient _client;
         public UserTests(WebApplicationFactory<Api.Startup> fixture)
         {
-            Client = fixture.CreateClient();
+            _client = fixture.CreateClient();
         }
 
         [Fact(DisplayName = "Should retrieve 10 users when no pageSize parameter is given")]
         public async Task TestPageSizeDefault()
         {
-            var response = await Client.GetAsync("/api/v1/user");
+            var response = await _client.GetAsync("/api/v1/user");
             var jsonString = await response.Content.ReadAsStringAsync();
             var responseJson = JObject.Parse(jsonString);
             var users = responseJson["users"].ToObject<List<dynamic>>();
@@ -36,7 +35,7 @@ namespace JSMCodeChallenge.Tests.Controllers.V1
         [InlineData("/api/v1/user?pageSize=10", 10)]
         public async Task TestPageSize(string uri, int expectedCount)
         {
-            var response = await Client.GetAsync(uri);
+            var response = await _client.GetAsync(uri);
             var jsonString = await response.Content.ReadAsStringAsync();
             var responseJson = JObject.Parse(jsonString);
             var users = responseJson["users"].ToObject<List<dynamic>>();
@@ -52,7 +51,7 @@ namespace JSMCodeChallenge.Tests.Controllers.V1
         [InlineData("/api/v1/user?pageSize=100")]
         public async Task TestPageSizeAtMost50(string uri)
         {
-            var response = await Client.GetAsync(uri);
+            var response = await _client.GetAsync(uri);
             var jsonString = await response.Content.ReadAsStringAsync();
             var responseJson = JObject.Parse(jsonString);
             var users = responseJson["users"].ToObject<List<dynamic>>();
@@ -69,7 +68,7 @@ namespace JSMCodeChallenge.Tests.Controllers.V1
         [InlineData("/api/v1/user?pageSize=-100")]
         public async Task TestPageSizeAtLeast1(string uri)
         {
-            var response = await Client.GetAsync(uri);
+            var response = await _client.GetAsync(uri);
             var jsonString = await response.Content.ReadAsStringAsync();
             var responseJson = JObject.Parse(jsonString);
             var users = responseJson["users"].ToObject<List<dynamic>>();

@@ -8,8 +8,8 @@ namespace JSMCodeChallenge.Business
 {
     public static class UserType
     {
-        private static readonly List<BoundingBox> SpecialBoundingBoxes;
-        private static readonly List<BoundingBox> NormalBoundingBoxes;
+        private static readonly List<BoundingBox> _specialBoundingBoxes;
+        private static readonly List<BoundingBox> _normalBoundingBoxes;
 
         static UserType()
         {
@@ -25,11 +25,11 @@ namespace JSMCodeChallenge.Business
                 new Decimal(-23.966413),
                 new Decimal(-19.766959)
             );
-            SpecialBoundingBoxes = new List<BoundingBox>() {
+            _specialBoundingBoxes = new List<BoundingBox>() {
                 specialBoundingBox,
                 anotherSpecialBoundingBox
             };
-            NormalBoundingBoxes = new List<BoundingBox>() {
+            _normalBoundingBoxes = new List<BoundingBox>() {
                 new BoundingBox(
                     new Decimal(-54.777426),
                     new Decimal(-46.603598),
@@ -47,9 +47,9 @@ namespace JSMCodeChallenge.Business
                 return "laborious";
 
             Coordinates userCoordinates = user.Location.Coordinates;
-            if (SpecialBoundingBoxes.Any(boundingBox => boundingBox.IsCoordinatesInside(userCoordinates)))
+            if (_specialBoundingBoxes.Any(boundingBox => boundingBox.IsCoordinatesInside(userCoordinates)))
                 return "special";
-            if (NormalBoundingBoxes.Any(boundingBox => boundingBox.IsCoordinatesInside(userCoordinates)))
+            if (_normalBoundingBoxes.Any(boundingBox => boundingBox.IsCoordinatesInside(userCoordinates)))
                 return "normal";
             return "laborious";
         }

@@ -12,12 +12,12 @@ namespace JSMCodeChallenge.Tests.DTOs
 {
     public class UserTests
     {
-        private static string baseDirectory = $"{Directory.GetParent(Environment.CurrentDirectory).Parent.FullName}../../..";
+        private static string _baseDirectory = $"{Directory.GetParent(Environment.CurrentDirectory).Parent.FullName}../../..";
 
         [Fact(DisplayName = "Should deserialize a JSON into UserDTO instance with valid values")]
         public static void TestDeserializeJSON()
         {
-            using (StreamReader stream = new StreamReader($"{baseDirectory}/resources/data-example.json"))
+            using (StreamReader stream = new StreamReader($"{_baseDirectory}/resources/data-example.json"))
             {
                 string json = stream.ReadToEnd();
                 UserDTO user = JsonSerializer.Deserialize<UserDTO>(json);
@@ -51,7 +51,7 @@ namespace JSMCodeChallenge.Tests.DTOs
         [Fact(DisplayName = "Should deserializa a JSON into UserDTO instance with default values when JSON is not in the expected format")]
         public static void TestDeserializeNotExpectedJSON()
         {
-            using (StreamReader stream = new StreamReader($"{baseDirectory}/resources/random-example.json"))
+            using (StreamReader stream = new StreamReader($"{_baseDirectory}/resources/random-example.json"))
             {
                 string json = stream.ReadToEnd();
                 UserDTO user = JsonSerializer.Deserialize<UserDTO>(json);
@@ -71,7 +71,7 @@ namespace JSMCodeChallenge.Tests.DTOs
         [Fact(DisplayName = "Should deserialize a CSV into UserDTO instance with valid values")]
         public static void TestDeserializeCSV()
         {
-            using (StreamReader stream = new StreamReader($"{baseDirectory}/resources/data-example.csv"))
+            using (StreamReader stream = new StreamReader($"{_baseDirectory}/resources/data-example.csv"))
             {
                 CsvReader reader = new CsvReader(stream, CultureInfo.InvariantCulture);
                 reader.Configuration.RegisterClassMap<UserDTO.CSVMap>();
@@ -107,7 +107,7 @@ namespace JSMCodeChallenge.Tests.DTOs
         [Fact(DisplayName = "Shouldn't deserialize a CSV into UserDTO instance when CSV is not in the expected format")]
         public static void TestDeserializeNotExpectedCSV()
         {
-            using (StreamReader stream = new StreamReader($"{baseDirectory}/resources/random-example.csv"))
+            using (StreamReader stream = new StreamReader($"{_baseDirectory}/resources/random-example.csv"))
             {
                 CsvReader reader = new CsvReader(stream, CultureInfo.InvariantCulture);
                 reader.Configuration.RegisterClassMap<UserDTO.CSVMap>();
@@ -118,7 +118,7 @@ namespace JSMCodeChallenge.Tests.DTOs
         [Fact(DisplayName = "Should deserialize a JSON results into list of UserDTO")]
         public static void TestDeserializeJSONUsersDTO()
         {
-            using (StreamReader stream = new StreamReader($"{baseDirectory}/resources/user-results-example.json"))
+            using (StreamReader stream = new StreamReader($"{_baseDirectory}/resources/user-results-example.json"))
             {
                 string json = stream.ReadToEnd();
                 JSONUsersDTO deserializedJSON = JsonSerializer.Deserialize<JSONUsersDTO>(json);

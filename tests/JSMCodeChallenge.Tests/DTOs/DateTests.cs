@@ -12,12 +12,12 @@ namespace JSMCodeChallenge.Tests.DTOs
 {
     public class DateTests
     {
-        private static string baseDirectory = $"{Directory.GetParent(Environment.CurrentDirectory).Parent.FullName}../../..";
+        private static string _baseDirectory = $"{Directory.GetParent(Environment.CurrentDirectory).Parent.FullName}../../..";
 
         [Fact(DisplayName = "Should deserialize a JSON into DateDTO instance with valid values")]
         public static void TestDeserializeJSON()
         {
-            using (StreamReader stream = new StreamReader($"{baseDirectory}/resources/date-example.json"))
+            using (StreamReader stream = new StreamReader($"{_baseDirectory}/resources/date-example.json"))
             {
                 string json = stream.ReadToEnd();
                 DateDTO dto = JsonSerializer.Deserialize<DateDTO>(json);
@@ -31,7 +31,7 @@ namespace JSMCodeChallenge.Tests.DTOs
         [Fact(DisplayName = "Should deserializa a JSON into DateDTO instance with default values when JSON is not in the expected format")]
         public static void TestDeserializeNotExpectedJSON()
         {
-            using (StreamReader stream = new StreamReader($"{baseDirectory}/resources/random-example.json"))
+            using (StreamReader stream = new StreamReader($"{_baseDirectory}/resources/random-example.json"))
             {
                 string json = stream.ReadToEnd();
                 DateDTO dto = JsonSerializer.Deserialize<DateDTO>(json);
@@ -44,7 +44,7 @@ namespace JSMCodeChallenge.Tests.DTOs
         [Fact(DisplayName = "Should deserialize a CSV into DateDTO instance with valid values")]
         public static void TestDeserializeCSV()
         {
-            using (StreamReader stream = new StreamReader($"{baseDirectory}/resources/data-example.csv"))
+            using (StreamReader stream = new StreamReader($"{_baseDirectory}/resources/data-example.csv"))
             {
                 CsvReader reader = new CsvReader(stream, CultureInfo.InvariantCulture);
                 DateDTO.CSVMap map = new DateDTO.CSVMap("dob");
@@ -61,7 +61,7 @@ namespace JSMCodeChallenge.Tests.DTOs
         [Fact(DisplayName = "Shouldnt deserialize a CSV into DateDTO instance when CSV is not in the expected format")]
         public static void TestDeserializeNotExpectedCSV()
         {
-            using (StreamReader stream = new StreamReader($"{baseDirectory}/resources/random-example.csv"))
+            using (StreamReader stream = new StreamReader($"{_baseDirectory}/resources/random-example.csv"))
             {
                 CsvReader reader = new CsvReader(stream, CultureInfo.InvariantCulture);
                 DateDTO.CSVMap map = new DateDTO.CSVMap("dob");
