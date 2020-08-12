@@ -78,5 +78,48 @@ namespace JSMCodeChallenge.Tests.Controllers.V1
             Assert.Single(users);
             Assert.Equal(1, pageSize);
         }
+
+        [Fact(DisplayName = "Should retrieve the first page when no page parameter is given")]
+        public async Task TestFirstPageDefault()
+        {
+            var response = await _client.GetAsync("/api/v1/user");
+            var jsonString = await response.Content.ReadAsStringAsync();
+            var responseJson = JObject.Parse(jsonString);
+
+            Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+            Assert.Equal(1, responseJson["pageNumber"]);
+        }
+
+        [Theory(DisplayName = "Should filter by region")]
+        [InlineData("/api/v1/user?region=north", "north")]
+        [InlineData("/api/v1/user?region=north east", "north east")]
+        [InlineData("/api/v1/user?region=center west", "center west")]
+        [InlineData("/api/v1/user?region=south east", "south east")]
+        [InlineData("/api/v1/user?region=south", "south")]
+        public async Task TestFilterRegion(string uri, string region)
+        {
+            var response = await _client.GetAsync(uri);
+            var jsonString = await response.Content.ReadAsStringAsync();
+            var responseJson = JObject.Parse(jsonString);
+            var users = responseJson["users"].ToObject<List<dynamic>>();
+
+            Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+            Assert.Collection(users, user => Assert.Equal(region, user["location"]?["region"].Value));
+        }
+
+        [Theory(DisplayName = "Should filter by type")]
+        [InlineData("/api/v1/user?type=laborious", "laborious")]
+        [InlineData("/api/v1/user?type=normal", "normal")]
+        [InlineData("/api/v1/user?type=special", "special")]
+        public async Task TestFilterType(string uri, string type)
+        {
+            var response = await _client.GetAsync(uri);
+            var jsonString = await response.Content.ReadAsStringAsync();
+            var responseJson = JObject.Parse(jsonString);
+            var users = responseJson["users"].ToObject<List<dynamic>>();
+
+            Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+            Assert.Collection(users, user => Assert.Equal(type, user["type"].Value));
+        }
     }
 }
