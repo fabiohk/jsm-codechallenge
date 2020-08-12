@@ -6,64 +6,66 @@ namespace JSMCodeChallenge.Tests.Models
 {
     public class LocationTests
     {
-        [Fact(DisplayName = "Should return that a Location instace is from Brazilian North region")]
-        public void TestBrazilianNorthRegion()
+        [Theory(DisplayName = "Should return that a Location instace is from Brazilian North region")]
+        [InlineData("acre")]
+        [InlineData("amazonas")]
+        [InlineData("amapá")]
+        [InlineData("pará")]
+        [InlineData("rondônia")]
+        [InlineData("roraima")]
+        [InlineData("tocantins")]
+        public void TestBrazilianNorthRegion(string state)
         {
-            string[] brazilianNorthStates = new string[] { "acre", "amazonas", "amapá", "pará", "rondônia", "roraima", "tocantins" };
-
-            foreach (string state in brazilianNorthStates)
-            {
-                BrazilianLocation location = new BrazilianLocation() { State = state };
-                Assert.Equal("north", location.Region);
-            }
+            BrazilianLocation location = new BrazilianLocation() { State = state };
+            Assert.Equal("north", location.Region);
         }
 
-        [Fact(DisplayName = "Should return that a Location instance is from Brazilian North East region")]
-        public void TestBrazilianNorthEastRegion()
+        [Theory(DisplayName = "Should return that a Location instance is from Brazilian North East region")]
+        [InlineData("alagoas")]
+        [InlineData("bahia")]
+        [InlineData("ceará")]
+        [InlineData("maranhão")]
+        [InlineData("paraíba")]
+        [InlineData("pernambuco")]
+        [InlineData("piauí")]
+        [InlineData("rio grande do norte")]
+        [InlineData("sergipe")]
+        public void TestBrazilianNorthEastRegion(string state)
         {
-            string[] brazilianNorthEastStates = new string[] { "alagoas", "bahia", "ceará", "maranhão", "paraíba", "pernambuco", "piauí", "rio grande do norte", "sergipe" };
-
-            foreach (string state in brazilianNorthEastStates)
-            {
-                BrazilianLocation location = new BrazilianLocation() { State = state };
-                Assert.Equal("north east", location.Region);
-            }
+            BrazilianLocation location = new BrazilianLocation() { State = state };
+            Assert.Equal("north east", location.Region);
         }
 
-        [Fact(DisplayName = "Should return that a Location instance is from Brazilian Center West region")]
-        public void TestBrazilianCenterWestRegion()
+        [Theory(DisplayName = "Should return that a Location instance is from Brazilian Center West region")]
+        [InlineData("goiás")]
+        [InlineData("mato grosso")]
+        [InlineData("mato grosso do sul")]
+        [InlineData("distrito federal")]
+        public void TestBrazilianCenterWestRegion(string state)
         {
-            string[] brazilianCenterWestStates = new string[] { "goiás", "mato grosso", "mato grosso do sul", "distrito federal" };
-
-            foreach (string state in brazilianCenterWestStates)
-            {
-                BrazilianLocation location = new BrazilianLocation() { State = state };
-                Assert.Equal("center west", location.Region);
-            }
+            BrazilianLocation location = new BrazilianLocation() { State = state };
+            Assert.Equal("center west", location.Region);
         }
 
-        [Fact(DisplayName = "Should return that a Location instance is from Brazilian South region")]
-        public void TestBrazilianSouthRegion()
+        [Theory(DisplayName = "Should return that a Location instance is from Brazilian South region")]
+        [InlineData("rio grande do sul")]
+        [InlineData("paraná")]
+        [InlineData("santa catarina")]
+        public void TestBrazilianSouthRegion(string state)
         {
-            string[] brazilianSouthStates = new string[] { "rio grande do sul", "paraná", "santa catarina" };
-
-            foreach (string state in brazilianSouthStates)
-            {
-                BrazilianLocation location = new BrazilianLocation() { State = state };
-                Assert.Equal("south", location.Region);
-            }
+            BrazilianLocation location = new BrazilianLocation() { State = state };
+            Assert.Equal("south", location.Region);
         }
 
-        [Fact(DisplayName = "Should return that a Location instance is from Brazilian South East region")]
-        public void TestBrazilianSouthEastRegion()
+        [Theory(DisplayName = "Should return that a Location instance is from Brazilian South East region")]
+        [InlineData("espírito santo")]
+        [InlineData("minas gerais")]
+        [InlineData("são paulo")]
+        [InlineData("rio de janeiro")]
+        public void TestBrazilianSouthEastRegion(string state)
         {
-            string[] brazilianSouthEastStates = new string[] { "espírito santo", "minas gerais", "são paulo", "rio de janeiro" };
-
-            foreach (string state in brazilianSouthEastStates)
-            {
-                BrazilianLocation location = new BrazilianLocation() { State = state };
-                Assert.Equal("south east", location.Region);
-            }
+            BrazilianLocation location = new BrazilianLocation() { State = state };
+            Assert.Equal("south east", location.Region);
         }
 
         [Fact(DisplayName = "Should throw InvalidLocationStateException when state is an unknown Brazilian state")]

@@ -7,30 +7,27 @@ namespace JSMCodeChallenge.Tests.Business
     public class UserTypeTests
     {
 
-        [Fact(DisplayName = "Should return that the user type is special")]
-        public void TestSpecialUserType()
+        [Theory(DisplayName = "Should return that the user type is special")]
+        [InlineData(-40, -10)]
+        [InlineData(-50, -20)]
+        public void TestSpecialUserType(decimal latitude, decimal longitude)
         {
             /* Special Type bounding boxes:
                 minlon: -2.196998
                 minlat -46.361899
                 maxlon: -15.411580
                 maxlat: -34.276938
-             */
-            Coordinates coordinates = new Coordinates() { Latitude = -40, Longitude = -10 };
-            Location specialLocation = new BrazilianLocation() { Coordinates = coordinates };
-            User user = new User() { Location = specialLocation };
 
-            Assert.Equal("special", UserType.GetUserType(user));
+                and
 
-            /* Special Type bounding boxes:
                 minlon: -19.766959
                 minlat -52.997614
                 maxlon: -23.966413
                 maxlat: -44.428305
              */
-            coordinates = new Coordinates() { Latitude = -50, Longitude = -20 };
-            specialLocation = new BrazilianLocation() { Coordinates = coordinates };
-            user = new User() { Location = specialLocation };
+            Coordinates coordinates = new Coordinates() { Latitude = latitude, Longitude = longitude };
+            Location specialLocation = new BrazilianLocation() { Coordinates = coordinates };
+            User user = new User() { Location = specialLocation };
 
             Assert.Equal("special", UserType.GetUserType(user));
         }
