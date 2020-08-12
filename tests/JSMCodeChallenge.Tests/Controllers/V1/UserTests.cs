@@ -1,5 +1,4 @@
 using Xunit;
-using Microsoft.AspNetCore.Mvc.Testing;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -17,7 +16,7 @@ namespace JSMCodeChallenge.Tests.Controllers.V1
             _client = fixture.CreateClient();
         }
 
-        [Fact(DisplayName = "Should retrieve 10 users when no pageSize parameter is given")]
+        [Fact(DisplayName = "Should retrieve up to 10 users when no pageSize parameter is given")]
         public async Task TestPageSizeDefault()
         {
             var response = await _client.GetAsync("/api/v1/user");
