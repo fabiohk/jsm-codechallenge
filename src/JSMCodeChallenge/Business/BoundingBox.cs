@@ -1,4 +1,5 @@
 using System;
+using Microsoft.Extensions.Configuration;
 using JSMCodeChallenge.Models;
 
 namespace JSMCodeChallenge.Business

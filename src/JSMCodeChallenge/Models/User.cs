@@ -1,9 +1,6 @@
 using System;
 using System.Collections.Generic;
 using JSMCodeChallenge.Exceptions;
-using System.Linq;
-using JSMCodeChallenge.Helpers;
-using PhoneNumbers;
 using JSMCodeChallenge.Business;
 
 namespace JSMCodeChallenge.Models

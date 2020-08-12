@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System;
 using Serilog;
+using System.IO;
+using Microsoft.Extensions.Configuration;
 
 namespace JSMCodeChallenge.Business
 {
@@ -13,30 +15,35 @@ namespace JSMCodeChallenge.Business
 
         static UserType()
         {
-            BoundingBox specialBoundingBox = new BoundingBox(
-                new Decimal(-46.361899),
-                new Decimal(-34.276938),
-                new Decimal(-15.411580),
-                new Decimal(-2.196998)
-            );
-            BoundingBox anotherSpecialBoundingBox = new BoundingBox(
-                new Decimal(-52.997614),
-                new Decimal(-44.428305),
-                new Decimal(-23.966413),
-                new Decimal(-19.766959)
-            );
-            _specialBoundingBoxes = new List<BoundingBox>() {
-                specialBoundingBox,
-                anotherSpecialBoundingBox
-            };
-            _normalBoundingBoxes = new List<BoundingBox>() {
-                new BoundingBox(
-                    new Decimal(-54.777426),
-                    new Decimal(-46.603598),
-                    new Decimal(-34.016466),
-                    new Decimal(-26.155681)
-                )
-            };
+            var configuration = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json", optional: false)
+                .AddEnvironmentVariables()
+                .Build();
+
+            var boundingBoxesSection = configuration.GetSection("BoundingBoxes");
+            var specialBoundingBoxesSection = boundingBoxesSection.GetSection("Special").GetChildren();
+            var normalBoundingBoxesSection = boundingBoxesSection.GetSection("Normal").GetChildren();
+
+            _specialBoundingBoxes = specialBoundingBoxesSection
+                .Select(box => new BoundingBox(
+                    Convert.ToDecimal(box["MinLatitude"]),
+                    Convert.ToDecimal(box["MaxLatitude"]),
+                    Convert.ToDecimal(box["MinLongitude"]),
+                    Convert.ToDecimal(box["MaxLongitude"])
+                ))
+                .ToList();
+
+            Log.Debug("Initialized bounding boxes with: Special (@SpecialBoundingBoxes}", _specialBoundingBoxes);
+            _normalBoundingBoxes = normalBoundingBoxesSection
+                .Select(box => new BoundingBox(
+                    Convert.ToDecimal(box["MinLatitude"]),
+                    Convert.ToDecimal(box["MaxLatitude"]),
+                    Convert.ToDecimal(box["MinLongitude"]),
+                    Convert.ToDecimal(box["MaxLongitude"])
+                ))
+                .ToList();
+            Log.Debug("Initialized bounding boxes with: Normal (@NormalBoundingBoxes}", _normalBoundingBoxes);
         }
 
         public static string GetUserType(User user)

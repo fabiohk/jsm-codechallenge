@@ -26,7 +26,7 @@ namespace JSMCodeChallenge.Repositories
 
         public IEnumerable<User> All() => Users;
 
-        public IEnumerable<User> Filter(Expression<Func<User, bool>> filterPredicate = null) => Users.Where(filterPredicate.Compile());
+        public IEnumerable<User> Filter(Expression<Func<User, bool>> filterPredicate) => Users.Where(filterPredicate.Compile());
 
         public int Count(Expression<Func<User, bool>> predicate) => Users.Where(predicate.Compile()).Count();
     }
