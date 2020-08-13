@@ -15,23 +15,37 @@ namespace JSMCodeChallenge.Tests.Fixtures
     public class CustomWebApplicationFactory : WebApplicationFactory<Api.Startup>
     {
         private Random random = new Random();
-        private User createUser(Coordinates coordinates, string state) => new User() { Email = $"{state}-{random.Next()}@email.com", Location = new BrazilianLocation() { State = state, Coordinates = coordinates } };
-        private User createLaboriousUser(string state)
+        private User CreateUser(Location? location) => new User()
+        {
+            Name = new Name(),
+            Email = $"{location?.State ?? "region"}-{random.Next()}@email.com",
+            Location = location ?? new BrazilianLocation() { Coordinates = new Coordinates(), Timezone = new Timezone() },
+            Picture = new Picture(),
+
+        };
+
+        private User CreateBrazilLocatedUser(Coordinates coordinates, string state)
+        {
+            Location location = new BrazilianLocation() { State = state, Coordinates = coordinates, Timezone = new Timezone() };
+            return CreateUser(location);
+        }
+
+        private User CreateLaboriousUser(string state)
         {
             var laboriousCoordinates = new Coordinates() { Latitude = 0, Longitude = 0 };
-            return createUser(laboriousCoordinates, state);
+            return CreateBrazilLocatedUser(laboriousCoordinates, state);
         }
 
-        private User createSpecialUser(string state)
+        private User CreateSpecialUser(string state)
         {
             var specialCoordinates = new Coordinates() { Latitude = -40, Longitude = -10 };
-            return createUser(specialCoordinates, state);
+            return CreateBrazilLocatedUser(specialCoordinates, state);
         }
 
-        private User createNormalUser(string state)
+        private User CreateNormalUser(string state)
         {
             var normalCoordinates = new Coordinates() { Latitude = -50, Longitude = -30 };
-            return createUser(normalCoordinates, state);
+            return CreateBrazilLocatedUser(normalCoordinates, state);
         }
 
         protected override IHostBuilder CreateHostBuilder() =>
@@ -44,21 +58,21 @@ namespace JSMCodeChallenge.Tests.Fixtures
                 })
                 .ConfigureServices((ctx, service) =>
                 {
-                    User laboriousNorthUser = createLaboriousUser("amazonas"),
-                         laboriousNorthEastUser = createLaboriousUser("bahia"),
-                         laboriousCenterWestUser = createLaboriousUser("goiás"),
-                         laboriousSouthEastUser = createLaboriousUser("são paulo"),
-                         laboriousSouthUser = createLaboriousUser("paraná"),
-                         specialNorthUser = createSpecialUser("acre"),
-                         specialNorthEastUser = createSpecialUser("sergipe"),
-                         specialCenterWestUser = createSpecialUser("mato grosso"),
-                         specialSouthEastUser = createSpecialUser("rio de janeiro"),
-                         specialSouthUser = createSpecialUser("santa catarina"),
-                         normalNorthUser = createNormalUser("roraima"),
-                         normalNorthEastUser = createNormalUser("piauí"),
-                         normalCenterWestUser = createNormalUser("distrito federal"),
-                         normalSouthEastUser = createNormalUser("espírito santo"),
-                         normalSouthUser = createNormalUser("rio grande do sul");
+                    User laboriousNorthUser = CreateLaboriousUser("amazonas"),
+                         laboriousNorthEastUser = CreateLaboriousUser("bahia"),
+                         laboriousCenterWestUser = CreateLaboriousUser("goiás"),
+                         laboriousSouthEastUser = CreateLaboriousUser("são paulo"),
+                         laboriousSouthUser = CreateLaboriousUser("paraná"),
+                         specialNorthUser = CreateSpecialUser("acre"),
+                         specialNorthEastUser = CreateSpecialUser("sergipe"),
+                         specialCenterWestUser = CreateSpecialUser("mato grosso"),
+                         specialSouthEastUser = CreateSpecialUser("rio de janeiro"),
+                         specialSouthUser = CreateSpecialUser("santa catarina"),
+                         normalNorthUser = CreateNormalUser("roraima"),
+                         normalNorthEastUser = CreateNormalUser("piauí"),
+                         normalCenterWestUser = CreateNormalUser("distrito federal"),
+                         normalSouthEastUser = CreateNormalUser("espírito santo"),
+                         normalSouthUser = CreateNormalUser("rio grande do sul");
                     IEnumerable<User> knownRegionUsers = new List<User>() {
                         laboriousNorthUser,
                         laboriousNorthEastUser,
@@ -76,7 +90,7 @@ namespace JSMCodeChallenge.Tests.Fixtures
                         normalSouthEastUser,
                         normalSouthUser,
                     };
-                    IEnumerable<User> unknownRegionUsers = Enumerable.Range(0, 50).Select(_ => new User() { Email = $"random-{random.Next()}@email.com" });
+                    IEnumerable<User> unknownRegionUsers = Enumerable.Range(0, 50).Select(_ => CreateUser(null));
 
                     service.AddSingleton<UserRepository>(_ => new UserRepository(unknownRegionUsers.Concat(knownRegionUsers)));
                 });

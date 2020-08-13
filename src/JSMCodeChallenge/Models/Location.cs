@@ -7,7 +7,7 @@ namespace JSMCodeChallenge.Models
     {
         public string Street { get; set; }
         public string City { get; set; }
-        public int? PostalCode { get; set; }
+        public int? Postcode { get; set; }
         public Coordinates Coordinates { get; set; }
         public Timezone Timezone { get; set; }
         public abstract string State { get; set; }
@@ -58,7 +58,9 @@ namespace JSMCodeChallenge.Models
                     return "center west";
                 if (_southStates.Contains(State))
                     return "south";
-                return "south east";
+                if (_southEastStates.Contains(State))
+                    return "south east";
+                return default;
             }
         }
     }

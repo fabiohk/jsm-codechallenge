@@ -30,7 +30,7 @@ namespace JSMCodeChallenge.Helpers
             {
                 Street = userDTO.Location?.Street,
                 City = userDTO.Location?.City,
-                PostalCode = userDTO.Location?.PostalCode,
+                Postcode = userDTO.Location?.PostalCode,
                 State = userDTO.Location?.State,
                 Coordinates = coordinates,
                 Timezone = timezone
@@ -47,14 +47,14 @@ namespace JSMCodeChallenge.Helpers
                 Email = userDTO.Email,
                 Gender = userDTO.Gender,
                 Name = name,
-                Phones = PhoneUtil
+                TelephoneNumbers = PhoneUtil
                     .RetrieveValidPhoneNumbers(new List<string>() { userDTO.Phone }, phoneRegion)
                     .Select(PhoneUtil.ConvertToE164Format),
-                CellPhones = PhoneUtil
+                MobileNumbers = PhoneUtil
                     .RetrieveValidPhoneNumbers(new List<string>() { userDTO.CellPhone }, phoneRegion)
                     .Select(PhoneUtil.ConvertToE164Format),
-                RegisteredDate = userDTO.Registered?.Date,
-                BirthDate = userDTO.Birth?.Date,
+                Registered = userDTO.Registered?.Date,
+                Birthday = userDTO.Birth?.Date,
                 Picture = picture,
                 Nationality = defaultNationality,
             };

@@ -9,7 +9,7 @@ A solution to JSM code challenge using *C#*.
 
 |Method|Endpoint|Description|
 |------|---|---------|
-| GET | /users | returns a list of eligible users (accept the *queries*: region, type, page, limit) |
+| GET | /users | returns a list of eligible users (accept the *queries*: region, type, page, pageSize) |
 
 # Running the service
 

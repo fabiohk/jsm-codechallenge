@@ -24,10 +24,10 @@ namespace JSMCodeChallenge.Models
             }
         }
         public Name Name { get; set; }
-        public IEnumerable<string> Phones { get; set; } = new List<string>();
-        public IEnumerable<string> CellPhones { get; set; } = new List<string>();
-        public DateTime? RegisteredDate { get; set; }
-        public DateTime? BirthDate { get; set; }
+        public IEnumerable<string> TelephoneNumbers { get; set; } = new List<string>();
+        public IEnumerable<string> MobileNumbers { get; set; } = new List<string>();
+        public DateTime? Registered { get; set; }
+        public DateTime? Birthday { get; set; }
         public Location Location { get; set; }
         public Picture Picture { get; set; }
         public string Nationality { get; set; }

@@ -11,11 +11,11 @@ namespace JSMCodeChallenge.Controllers.V1
 {
     [ApiController]
     [Route("api/v1/[controller]")]
-    public class UserController : ControllerBase
+    public class UsersController : ControllerBase
     {
         private readonly UserRepository _userRepository;
 
-        public UserController(UserRepository userRepository)
+        public UsersController(UserRepository userRepository)
         {
             _userRepository = userRepository;
         }
