@@ -1,3 +1,3 @@
 #!/bin/bash
-echo "[PRE-RUN]: Running tests..."
-dotnet tests
+echo "[TESTS]: Running Tests with dotnet..."
+dotnet test --logger "console;verbosity=detailed"

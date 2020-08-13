@@ -104,7 +104,7 @@ namespace JSMCodeChallenge.Tests.Controllers.V1
             var users = responseJson["users"].ToObject<List<dynamic>>();
 
             Assert.Equal(HttpStatusCode.OK, response.StatusCode);
-            Assert.Collection(users, user => Assert.Equal(region, user["location"]?["region"].Value));
+            Assert.All(users, user => Assert.Equal(region, user["location"]?["region"].Value));
         }
 
         [Theory(DisplayName = "Should filter by type")]
@@ -119,7 +119,7 @@ namespace JSMCodeChallenge.Tests.Controllers.V1
             var users = responseJson["users"].ToObject<List<dynamic>>();
 
             Assert.Equal(HttpStatusCode.OK, response.StatusCode);
-            Assert.Collection(users, user => Assert.Equal(type, user["type"].Value));
+            Assert.All(users, user => Assert.Equal(type, user["type"].Value));
         }
 
         [Fact(DisplayName = "Should have the expected contract as defined by the challenge")]
