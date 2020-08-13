@@ -31,7 +31,7 @@ namespace JSMCodeChallenge.Helpers
             pageSize = pageSize.HasValue ? Math.Max(Math.Min(pageSize.Value, maxPageSize), minPageSize) : defaultPageSize;
             page = page.HasValue ? Math.Max(page.Value, minPageNumber) : defaultPage;
             int offset = (page.Value - 1) * pageSize.Value;
-            return new Page(page.Value, Math.Min(pageSize.Value, objects.Count()), objects.Skip(offset).Take(page.Value));
+            return new Page(page.Value, Math.Min(pageSize.Value, objects.Count()), objects.Skip(offset).Take(pageSize.Value).ToList());
         }
 
     }
