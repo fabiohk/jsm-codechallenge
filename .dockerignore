@@ -1,2 +1,9 @@
-bin/
-obj/
+# Exclude all files
+*
+
+# Allow only files from src folder
+!src
+
+# Exclude /bin and /obj
+**/bin
+**/obj
