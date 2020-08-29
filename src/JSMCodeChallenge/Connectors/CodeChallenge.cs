@@ -42,7 +42,7 @@ namespace JSMCodeChallenge.Connectors
             Stream stream = await response.Content.ReadAsStreamAsync();
             JSONUsersDTO results = await JsonSerializer.DeserializeAsync<JSONUsersDTO>(stream);
             Log.Information("Successfully retrieved {Count} users from JSON.", results.Users.Count());
-            return results.Users;
+            return results?.Users ?? new List<UserDTO>();
         }
 
     }

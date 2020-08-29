@@ -48,10 +48,10 @@ namespace JSMCodeChallenge.Helpers
                 Gender = userDTO.Gender,
                 Name = name,
                 TelephoneNumbers = PhoneUtil
-                    .RetrieveValidPhoneNumbers(new List<string>() { userDTO.Phone }, phoneRegion)
+                    .RetrieveValidPhoneNumbers(new List<string>() { userDTO.Phone ?? "" }, phoneRegion)
                     .Select(PhoneUtil.ConvertToE164Format),
                 MobileNumbers = PhoneUtil
-                    .RetrieveValidPhoneNumbers(new List<string>() { userDTO.CellPhone }, phoneRegion)
+                    .RetrieveValidPhoneNumbers(new List<string>() { userDTO.CellPhone ?? "" }, phoneRegion)
                     .Select(PhoneUtil.ConvertToE164Format),
                 Registered = userDTO.Registered?.Date,
                 Birthday = userDTO.Birth?.Date,

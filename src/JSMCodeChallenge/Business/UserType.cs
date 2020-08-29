@@ -50,10 +50,11 @@ namespace JSMCodeChallenge.Business
         {
             Log.Debug("Trying to evaluate user with coordinates {@Coordinates}...", user.Location?.Coordinates);
 
-            if (user.Location == null)
+            if (user.Location?.Coordinates == null)
                 return "laborious";
 
             Coordinates userCoordinates = user.Location.Coordinates;
+
             if (_specialBoundingBoxes.Any(boundingBox => boundingBox.IsCoordinatesInside(userCoordinates)))
                 return "special";
             if (_normalBoundingBoxes.Any(boundingBox => boundingBox.IsCoordinatesInside(userCoordinates)))

@@ -6,17 +6,17 @@ namespace JSMCodeChallenge.DTOs
     public class LocationDTO
     {
         [JsonPropertyName("street")]
-        public string Street { get; set; }
+        public string? Street { get; set; }
         [JsonPropertyName("city")]
-        public string City { get; set; }
+        public string? City { get; set; }
         [JsonPropertyName("state")]
-        public string State { get; set; }
+        public string? State { get; set; }
         [JsonPropertyName("postcode")]
         public int PostalCode { get; set; }
         [JsonPropertyName("coordinates")]
-        public CoordinatesDTO Coordinates { get; set; }
+        public CoordinatesDTO? Coordinates { get; set; }
         [JsonPropertyName("timezone")]
-        public TimezoneDTO Timezone { get; set; }
+        public TimezoneDTO? Timezone { get; set; }
 
         public class CSVMap : ClassMap<LocationDTO>
         {
@@ -35,9 +35,9 @@ namespace JSMCodeChallenge.DTOs
     public class CoordinatesDTO
     {
         [JsonPropertyName("latitude")]
-        public string Latitude { get; set; }
+        public string? Latitude { get; set; }
         [JsonPropertyName("longitude")]
-        public string Longitude { get; set; }
+        public string? Longitude { get; set; }
 
         public class CSVMap : ClassMap<CoordinatesDTO>
         {
@@ -52,9 +52,9 @@ namespace JSMCodeChallenge.DTOs
     public class TimezoneDTO
     {
         [JsonPropertyName("offset")]
-        public string Offset { get; set; }
+        public string? Offset { get; set; }
         [JsonPropertyName("description")]
-        public string Description { get; set; }
+        public string? Description { get; set; }
 
         public class CSVMap : ClassMap<TimezoneDTO>
         {

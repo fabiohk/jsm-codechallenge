@@ -5,13 +5,13 @@ namespace JSMCodeChallenge.Models
 {
     public abstract class Location
     {
-        public string Street { get; set; }
-        public string City { get; set; }
+        public string? Street { get; set; }
+        public string? City { get; set; }
         public int? Postcode { get; set; }
-        public Coordinates Coordinates { get; set; }
-        public Timezone Timezone { get; set; }
-        public abstract string State { get; set; }
-        public abstract string Region { get; }
+        public Coordinates? Coordinates { get; set; }
+        public Timezone? Timezone { get; set; }
+        public abstract string? State { get; set; }
+        public abstract string? Region { get; }
     }
 
     public class Coordinates
@@ -22,8 +22,8 @@ namespace JSMCodeChallenge.Models
 
     public class Timezone
     {
-        public string Offset { get; set; }
-        public string Description { get; set; }
+        public string? Offset { get; set; }
+        public string? Description { get; set; }
     }
 
     public class BrazilianLocation : Location
@@ -33,12 +33,12 @@ namespace JSMCodeChallenge.Models
         private readonly HashSet<string> _centerWestStates = new HashSet<string> { "goiás", "mato grosso", "mato grosso do sul", "distrito federal" };
         private readonly HashSet<string> _southStates = new HashSet<string> { "rio grande do sul", "paraná", "santa catarina" };
         private readonly HashSet<string> _southEastStates = new HashSet<string> { "espírito santo", "minas gerais", "são paulo", "rio de janeiro" };
-        private string _state;
-        public override string State
+        private string? _state;
+        public override string? State
         {
             get => _state; set
             {
-                string stateLoweredString = value.ToLower();
+                string stateLoweredString = value?.ToLower() ?? "";
 
                 if (!_northStates.Contains(stateLoweredString) && !_northEastStates.Contains(stateLoweredString) && !_centerWestStates.Contains(stateLoweredString) && !_southStates.Contains(stateLoweredString) && !_southEastStates.Contains(stateLoweredString))
                     throw new InvalidLocationStateException();
@@ -46,10 +46,12 @@ namespace JSMCodeChallenge.Models
                 _state = stateLoweredString;
             }
         }
-        public override string Region
+        public override string? Region
         {
             get
             {
+                if (State == null)
+                    return default;
                 if (_northStates.Contains(State))
                     return "north";
                 if (_northEastStates.Contains(State))
