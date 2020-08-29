@@ -20,7 +20,7 @@ namespace JSMCodeChallenge.Controllers.V1
             _userRepository = userRepository;
         }
 
-        private Expression<Func<User, bool>> ParseFilterExpression(string region, string type)
+        private Expression<Func<User, bool>> ParseFilterExpression(string? region, string? type)
         {
             Expression<Func<User, bool>> regionFilterExpression = user => region == null ? true : (user.Location != null ? user.Location.Region == region : false);
             Expression<Func<User, bool>> typeFilterExpression = user => type == null ? true : user.Type == type;
@@ -34,7 +34,7 @@ namespace JSMCodeChallenge.Controllers.V1
         }
 
         [HttpGet]
-        public ActionResult Get(int? pageSize, int? page, string region, string type)
+        public ActionResult Get(int? pageSize, int? page, string? region, string? type)
         {
             Log.Information("Receive request to retrieve user with params: {@Params}", new { pageSize, page, region, type });
             var filterExpression = ParseFilterExpression(region, type);

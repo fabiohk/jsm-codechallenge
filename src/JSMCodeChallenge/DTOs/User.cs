@@ -7,23 +7,23 @@ namespace JSMCodeChallenge.DTOs
     public class UserDTO
     {
         [JsonPropertyName("gender")]
-        public string Gender { get; set; }
+        public string? Gender { get; set; }
         [JsonPropertyName("name")]
-        public NameDTO Name { get; set; }
+        public NameDTO? Name { get; set; }
         [JsonPropertyName("location")]
-        public LocationDTO Location { get; set; }
+        public LocationDTO? Location { get; set; }
         [JsonPropertyName("email")]
-        public string Email { get; set; }
+        public string? Email { get; set; }
         [JsonPropertyName("dob")]
-        public DateDTO Birth { get; set; }
+        public DateDTO? Birth { get; set; }
         [JsonPropertyName("registered")]
-        public DateDTO Registered { get; set; }
+        public DateDTO? Registered { get; set; }
         [JsonPropertyName("phone")]
-        public string Phone { get; set; }
+        public string? Phone { get; set; }
         [JsonPropertyName("cell")]
-        public string CellPhone { get; set; }
+        public string? CellPhone { get; set; }
         [JsonPropertyName("picture")]
-        public PictureDTO Picture { get; set; }
+        public PictureDTO? Picture { get; set; }
 
         public class CSVMap : ClassMap<UserDTO>
         {
@@ -45,6 +45,6 @@ namespace JSMCodeChallenge.DTOs
     public class JSONUsersDTO
     {
         [JsonPropertyName("results")]
-        public List<UserDTO> Users { get; set; }
+        public List<UserDTO>? Users { get; set; }
     }
 }

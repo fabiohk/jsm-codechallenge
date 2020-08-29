@@ -6,11 +6,11 @@ namespace JSMCodeChallenge.DTOs
     public class PictureDTO
     {
         [JsonPropertyName("large")]
-        public string Large { get; set; }
+        public string? Large { get; set; }
         [JsonPropertyName("medium")]
-        public string Medium { get; set; }
+        public string? Medium { get; set; }
         [JsonPropertyName("thumbnail")]
-        public string Thumbnail { get; set; }
+        public string? Thumbnail { get; set; }
 
         public class CSVMap : ClassMap<PictureDTO>
         {

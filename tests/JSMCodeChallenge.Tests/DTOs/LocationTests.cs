@@ -26,10 +26,10 @@ namespace JSMCodeChallenge.Tests.DTOs
                 Assert.Equal("ponta grossa", location.City);
                 Assert.Equal("rondônia", location.State);
                 Assert.Equal(97701, location.PostalCode);
-                Assert.Equal("-76.3253", location.Coordinates.Latitude);
-                Assert.Equal("137.9437", location.Coordinates.Longitude);
-                Assert.Equal("-1:00", location.Timezone.Offset);
-                Assert.Equal("Azores, Cape Verde Islands", location.Timezone.Description);
+                Assert.Equal("-76.3253", location.Coordinates?.Latitude);
+                Assert.Equal("137.9437", location.Coordinates?.Longitude);
+                Assert.Equal("-1:00", location.Timezone?.Offset);
+                Assert.Equal("Azores, Cape Verde Islands", location.Timezone?.Description);
             }
         }
 
@@ -64,10 +64,10 @@ namespace JSMCodeChallenge.Tests.DTOs
                 Assert.Equal("ponta grossa", locations[0].City);
                 Assert.Equal("rondônia", locations[0].State);
                 Assert.Equal(97701, locations[0].PostalCode);
-                Assert.Equal("-76.3253", locations[0].Coordinates.Latitude);
-                Assert.Equal("137.9437", locations[0].Coordinates.Longitude);
-                Assert.Equal("-1:00", locations[0].Timezone.Offset);
-                Assert.Equal("Azores, Cape Verde Islands", locations[0].Timezone.Description);
+                Assert.Equal("-76.3253", locations[0].Coordinates?.Latitude);
+                Assert.Equal("137.9437", locations[0].Coordinates?.Longitude);
+                Assert.Equal("-1:00", locations[0].Timezone?.Offset);
+                Assert.Equal("Azores, Cape Verde Islands", locations[0].Timezone?.Description);
             }
         }
 

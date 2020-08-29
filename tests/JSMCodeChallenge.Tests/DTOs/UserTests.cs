@@ -25,26 +25,26 @@ namespace JSMCodeChallenge.Tests.DTOs
                 DateTime expectedRegisteredDate = new DateTime(2004, 1, 23, 23, 54, 33, DateTimeKind.Utc);
 
                 Assert.Equal("female", user.Gender);
-                Assert.Equal("mrs", user.Name.Title);
-                Assert.Equal("ione", user.Name.First);
-                Assert.Equal("da costa", user.Name.Last);
-                Assert.Equal("8614 avenida vinícius de morais", user.Location.Street);
-                Assert.Equal("ponta grossa", user.Location.City);
-                Assert.Equal("rondônia", user.Location.State);
-                Assert.Equal(97701, user.Location.PostalCode);
-                Assert.Equal("-76.3253", user.Location.Coordinates.Latitude);
-                Assert.Equal("137.9437", user.Location.Coordinates.Longitude);
-                Assert.Equal("-1:00", user.Location.Timezone.Offset);
+                Assert.Equal("mrs", user.Name?.Title);
+                Assert.Equal("ione", user.Name?.First);
+                Assert.Equal("da costa", user.Name?.Last);
+                Assert.Equal("8614 avenida vinícius de morais", user.Location?.Street);
+                Assert.Equal("ponta grossa", user.Location?.City);
+                Assert.Equal("rondônia", user.Location?.State);
+                Assert.Equal(97701, user.Location?.PostalCode);
+                Assert.Equal("-76.3253", user.Location?.Coordinates?.Latitude);
+                Assert.Equal("137.9437", user.Location?.Coordinates?.Longitude);
+                Assert.Equal("-1:00", user.Location?.Timezone?.Offset);
                 Assert.Equal("ione.dacosta@example.com", user.Email);
-                Assert.Equal(expectedBirthDate, user.Birth.Date);
-                Assert.Equal(50, user.Birth.Age);
-                Assert.Equal(expectedRegisteredDate, user.Registered.Date);
-                Assert.Equal(14, user.Registered.Age);
+                Assert.Equal(expectedBirthDate, user.Birth?.Date);
+                Assert.Equal(50, user.Birth?.Age);
+                Assert.Equal(expectedRegisteredDate, user.Registered?.Date);
+                Assert.Equal(14, user.Registered?.Age);
                 Assert.Equal("(01) 5415-5648", user.Phone);
                 Assert.Equal("(10) 8264-5550", user.CellPhone);
-                Assert.Equal("https://randomuser.me/api/portraits/women/46.jpg", user.Picture.Large);
-                Assert.Equal("https://randomuser.me/api/portraits/med/women/46.jpg", user.Picture.Medium);
-                Assert.Equal("https://randomuser.me/api/portraits/thumb/women/46.jpg", user.Picture.Thumbnail);
+                Assert.Equal("https://randomuser.me/api/portraits/women/46.jpg", user.Picture?.Large);
+                Assert.Equal("https://randomuser.me/api/portraits/med/women/46.jpg", user.Picture?.Medium);
+                Assert.Equal("https://randomuser.me/api/portraits/thumb/women/46.jpg", user.Picture?.Thumbnail);
             }
         }
 
@@ -81,26 +81,26 @@ namespace JSMCodeChallenge.Tests.DTOs
 
                 Assert.Single(users);
                 Assert.Equal("female", users[0].Gender);
-                Assert.Equal("mrs", users[0].Name.Title);
-                Assert.Equal("ione", users[0].Name.First);
-                Assert.Equal("da costa", users[0].Name.Last);
-                Assert.Equal("8614 avenida vinícius de morais", users[0].Location.Street);
-                Assert.Equal("ponta grossa", users[0].Location.City);
-                Assert.Equal("rondônia", users[0].Location.State);
-                Assert.Equal(97701, users[0].Location.PostalCode);
-                Assert.Equal("-76.3253", users[0].Location.Coordinates.Latitude);
-                Assert.Equal("137.9437", users[0].Location.Coordinates.Longitude);
-                Assert.Equal("-1:00", users[0].Location.Timezone.Offset);
+                Assert.Equal("mrs", users[0].Name?.Title);
+                Assert.Equal("ione", users[0].Name?.First);
+                Assert.Equal("da costa", users[0].Name?.Last);
+                Assert.Equal("8614 avenida vinícius de morais", users[0].Location?.Street);
+                Assert.Equal("ponta grossa", users[0].Location?.City);
+                Assert.Equal("rondônia", users[0].Location?.State);
+                Assert.Equal(97701, users[0].Location?.PostalCode);
+                Assert.Equal("-76.3253", users[0].Location?.Coordinates?.Latitude);
+                Assert.Equal("137.9437", users[0].Location?.Coordinates?.Longitude);
+                Assert.Equal("-1:00", users[0].Location?.Timezone?.Offset);
                 Assert.Equal("ione.dacosta@example.com", users[0].Email);
-                Assert.Equal(expectedBirthDate, users[0].Birth.Date);
-                Assert.Equal(50, users[0].Birth.Age);
-                Assert.Equal(expectedRegisteredDate, users[0].Registered.Date);
-                Assert.Equal(14, users[0].Registered.Age);
+                Assert.Equal(expectedBirthDate, users[0].Birth?.Date);
+                Assert.Equal(50, users[0].Birth?.Age);
+                Assert.Equal(expectedRegisteredDate, users[0].Registered?.Date);
+                Assert.Equal(14, users[0].Registered?.Age);
                 Assert.Equal("(01) 5415-5648", users[0].Phone);
                 Assert.Equal("(10) 8264-5550", users[0].CellPhone);
-                Assert.Equal("https://randomuser.me/api/portraits/women/46.jpg", users[0].Picture.Large);
-                Assert.Equal("https://randomuser.me/api/portraits/med/women/46.jpg", users[0].Picture.Medium);
-                Assert.Equal("https://randomuser.me/api/portraits/thumb/women/46.jpg", users[0].Picture.Thumbnail);
+                Assert.Equal("https://randomuser.me/api/portraits/women/46.jpg", users[0].Picture?.Large);
+                Assert.Equal("https://randomuser.me/api/portraits/med/women/46.jpg", users[0].Picture?.Medium);
+                Assert.Equal("https://randomuser.me/api/portraits/thumb/women/46.jpg", users[0].Picture?.Thumbnail);
             }
         }
 
