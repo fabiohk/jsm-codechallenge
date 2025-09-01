@@ -9,7 +9,7 @@ updates:
     open-pull-requests-limit: 100
     target-branch: "master"
     groups:
-      patches:
+      patches-updates:
         update-types:
           - patch
     ignore:
