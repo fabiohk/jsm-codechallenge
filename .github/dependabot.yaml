@@ -9,12 +9,12 @@ updates:
     open-pull-requests-limit: 100
     target-branch: "master"
     groups:
-      patches-updates-without-minor:
-        update-types:
-          - patch
       minor-only:
         update-types:
           - minor
+      patches-updates-without-minor:
+        update-types:
+          - patch
     ignore:
       - dependency-name: "*"
         update-types:
