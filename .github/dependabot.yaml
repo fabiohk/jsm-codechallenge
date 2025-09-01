@@ -7,7 +7,7 @@ updates:
       time: "08:00"
       day: "sunday"
     target-branch: "master"
-    open-pull-requests-limit: 0
+    open-pull-requests-limit: 100
     groups:
       patches:
         update-types:
