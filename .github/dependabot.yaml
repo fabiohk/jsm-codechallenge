@@ -12,6 +12,9 @@ updates:
       patches-updates-without-minor:
         update-types:
           - patch
+      minor-only:
+        update-types:
+          - minor
     ignore:
       - dependency-name: "*"
         update-types:
