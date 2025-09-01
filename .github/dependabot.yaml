@@ -9,10 +9,11 @@ updates:
     target-branch: "master"
     groups:
       patches:
-        applies-to: security-updates
         update-types:
           - patch
     ignore:
       - dependency-name: "*"
         update-types:
           - version-update:semver-major
+    allow:
+      - dependency-name: "*"
