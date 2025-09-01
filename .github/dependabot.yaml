@@ -9,13 +9,12 @@ updates:
     open-pull-requests-limit: 100
     target-branch: "master"
     groups:
-      patches-updates:
+      patches-updates-without-minor:
         update-types:
           - patch
     ignore:
       - dependency-name: "*"
         update-types:
           - version-update:semver-major
-          - version-update:semver-minor
     allow:
       - dependency-name: "*"
