@@ -11,7 +11,3 @@ updates:
       patches:
         update-types:
           - patch
-    ignore:
-      - dependency-name: "*"
-        update-types:
-          - version-update:semver-major
