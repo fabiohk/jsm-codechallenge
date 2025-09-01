@@ -6,6 +6,7 @@ updates:
       interval: "weekly"
       time: "08:00"
       day: "sunday"
+    open-pull-requests-limit: 100
     target-branch: "master"
     groups:
       patches:
