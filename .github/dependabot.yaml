@@ -11,10 +11,10 @@ updates:
     groups:
       minor-only:
         update-types:
-          - minor
+          - "minor"
       patches-updates-without-minor:
         update-types:
-          - patch
+          - "patch"
     ignore:
       - dependency-name: "*"
         update-types:
