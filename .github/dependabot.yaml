@@ -9,6 +9,7 @@ updates:
     target-branch: "master"
     groups:
       patches:
+        applies-to: security-updates
         update-types:
           - patch
     ignore:
